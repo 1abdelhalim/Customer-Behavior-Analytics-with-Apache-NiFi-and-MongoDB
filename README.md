@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- Docker and Docker Compose must be installed on your machine.
+- Install Docker and Docker Compose
 
 ## Step 1: Clone the Repository
 
@@ -35,7 +35,6 @@ You can access the NiFi UI at [http://localhost:8080/nifi](http://localhost:8080
 
 2. Create a Data Ingestion Flow:
    - Add a `GetHTTP` processor to pull the dataset from the URL.
-   - Add a `SplitText` processor to split the CSV file into individual rows.
    - Add a `ConvertRecord` processor to convert the CSV data into JSON format.
    - Add a `PutMongo` processor to insert the JSON data into MongoDB.
 
@@ -46,7 +45,7 @@ You can access the NiFi UI at [http://localhost:8080/nifi](http://localhost:8080
    https://raw.githubusercontent.com/vn-quant/Consumer-Behavior-and-Shopping-Habits/R/shopping_behavior_updated.csv
    ```
 
-   - Configure `PutMongo` to insert data into the `customer_behavior` database in MongoDB under the `events` collection.
+   - Configure `PutMongo` to insert data into the `customer_data` database in MongoDB under the `purchases` collection.
 
 4. Start the Data Flow to ingest the data into MongoDB.
 
@@ -56,36 +55,12 @@ Once the data is ingested into MongoDB, we can run analytics queries to derive i
 
 ### Example Queries
 
-- **Customer Segmentation by Age**: Group customers by age range and calculate their total purchases.
+- **Find a specific Customer**
+![Specific Customer]("find_cust.png")
 
-```javascript
-db.events.aggregate([
-  {
-    $bucket: {
-      groupBy: "$Age",
-      boundaries: [18, 25, 35, 45, 55, 65],
-      output: {
-        TotalPurchases: { $sum: "$PurchaseAmountUSD" },
-        NumberOfPurchases: { $sum: 1 }
-      }
-    }
-  }
-]);
-```
+- **Aggregation by Category**:
+![Aggregation by Category]("agg_Cat.png")
 
-- **Find Popular Products**: Identify the most frequently purchased products.
-
-```javascript
-db.events.aggregate([
-  {
-    $group: {
-      _id: "$ItemPurchased",
-      Count: { $sum: 1 }
-    }
-  },
-  { $sort: { Count: -1 } }
-]);
-```
 
 ## Step 5: Explore Data with Mongo Express
 
