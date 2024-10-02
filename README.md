@@ -56,10 +56,11 @@ Once the data is ingested into MongoDB, we can run analytics queries to derive i
 ### Example Queries
 
 - **Find a specific Customer**
-![Specific Customer]("find_cust.png")
+![Specific Customer](find_cust.png)
 
 - **Aggregation by Category**:
-![Aggregation by Category]("agg_Cat.png")
+![Aggregation by Category](agg_Cat.png)
+
 
 
 ## Step 5: Explore Data with Mongo Express
