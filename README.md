@@ -59,7 +59,7 @@ Once the data is ingested into MongoDB, we can run analytics queries to derive i
 ![Specific Customer](find_cust.png)
 
 - **Aggregation by Category**:
-![Aggregation by Category](agg_Cat.png)
+![Aggregation by Category](agg_cat.png)
 
 
 
