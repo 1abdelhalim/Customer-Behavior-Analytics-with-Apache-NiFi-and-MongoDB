@@ -37,6 +37,8 @@ You can access the NiFi UI at [http://localhost:8080/nifi](http://localhost:8080
    - Add a `GetHTTP` processor to pull the dataset from the URL.
    - Add a `ConvertRecord` processor to convert the CSV data into JSON format.
    - Add a `PutMongo` processor to insert the JSON data into MongoDB.
+  
+![nifi](nifi.png)
 
 3. Configure the Processors:
    - For `GetHTTP`, use the following URL for the dataset:
@@ -44,8 +46,12 @@ You can access the NiFi UI at [http://localhost:8080/nifi](http://localhost:8080
    ```bash
    https://raw.githubusercontent.com/vn-quant/Consumer-Behavior-and-Shopping-Habits/R/shopping_behavior_updated.csv
    ```
+![http](http.png)
+
 
    - Configure `PutMongo` to insert data into the `customer_data` database in MongoDB under the `purchases` collection.
+
+![mongo](mongo.png)
 
 4. Start the Data Flow to ingest the data into MongoDB.
 
